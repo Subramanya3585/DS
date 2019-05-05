@@ -1,0 +1,121 @@
+What is Data science?
+Data Science is a blend of machine learning algorithms, statistics, business intelligence, programming. It is helpful in discovering hidden patterns from the raw data which in turn helps to increase revenue and customer satisfaction.
+
+
+
+Read File
+Data Wrangling
+Data Cleaning
+
+Analysis 
+- Descriptive Analysis
+- Univariate Analysis
+- Bivariate Analysis
+- Multivariate Analysis
+
+Hypothesis testing.
+
+
+
+Below are DS Steps
+level1 is fine.
+
+Level2
+Step5 needs to contain has to been replaced with below one.
+	- Treating missing values and infinite in Numpy.
+	- compute mean, min, max on the ndarray.
+	- difference between flatten() and ravel().
+	- finding unique items and the counts.
+
+
+- Treating missing values and infinite in Numpy.
+Missing values can be represented using np.nan object, while np.inf represents infinite. Let’s place some in arr2d.	
+
+# we have created a numpy array and create a missing value and infinite case.
+list2 = [[1, 2, 3, 4],[3, 4, 5, 6], [5, 6, 7, 8]]
+arr2 = np.array(list2, dtype='float')
+
+# Insert a nan and an inf
+arr2[1,2] = np.nan  # not a number
+arr2[2,3] = np.inf  # infinite
+arr2
+
+
+#now we are replacing nan and inf with 0. Don't use arr2== np.nan
+missing_bool = np.isnan(arr2) | np.isinf(arr2)
+arr2[missing_bool] = 0  
+arr2
+
+
+- compute mean, min, max on the ndarray.
+The ndarray has the respective methods to compute this for the whole array.
+
+# mean, max and min
+print("Mean value is: ", arr2.mean())
+print("Max value is: ", arr2.max())
+print("Min value is: ", arr2.min())
+
+However, if you want to compute the minimum/maxmimum values row wise or column wise, use the np.amin and np.amax version resepectively.
+# Row wise and column wise min
+print("Column wise minimum: ", np.amin(arr2, axis=0))
+print("Row wise minimum: ", np.amin(arr2, axis=1))
+
+# Row wise and column wise max
+print("Column wise minimum: ", np.amax(arr2, axis=0))
+print("Row wise minimum: ", np.amax(arr2, axis=1))
+
+
+Computing the minimum row-wise is fine. But what if you want to do some other computation/function row-wise? It can be done using the np.apply_over_axis which you will see in the upcoming topic.
+# Cumulative Sum
+np.cumsum(arr2)
+
+
+- difference between flatten() and ravel().
+There are 2 popular ways to implement flattening. That is using the flatten() method and the other using the ravel() method.
+
+The difference between ravel and flatten is, the new array created using ravel is actually a reference to the parent array. So, any changes to the new array will affect the parent as well. But is memory efficient since it does not create a copy.
+
+# Flatten it to a 1d array
+arr2.flatten()
+
+# Changing the flattened array does not change parent
+b1 = arr2.flatten()  
+b1[0] = 100  # changing b1 does not affect arr2
+arr2
+
+# Changing the raveled array changes the parent also.
+b2 = arr2.ravel()  
+b2[0] = 101  # changing b2 changes arr2 also
+arr2
+
+
+- finding unique items and the counts.
+The np.unique method can be used to get the unique items. If you want the repetition counts of each item, set the return_counts parameter to True.
+
+# Create random integers of size 10 between [0,10)
+np.random.seed(100)#get a same random number we need to set a seed.
+arr_rand = np.random.randint(0, 10, size=10)
+print(arr_rand)
+
+
+# Get the unique items and their counts
+uniqs, counts = np.unique(arr_rand, return_counts=True)
+print("Unique items : ", uniqs)
+print("Counts : ", counts)
+
+Numpy Assignment	
+-Load the data file
+-Extract the column1, column3 and column6 arrays to arrays T, S, P and mask out invalid data (the nan values from missing points).
+-Extract the date, column2, column5, and level arrays.
+-Note the shapes of T, S and P compared to these arrays. How do they line up?
+
+Level2 pandas - all the step are fine in this level
+
+Pandas Assignment
+- Read the csv files data using pandas library
+- check the data types of the column and see whether date column is the date format if not correct it.
+- find the summary statistics of data 
+- Find the 10 states / countries with the highest number of earthquakes?
+- Find the top 10 states / countries where the strongest and weakest earthquakes occured
+	
+level4 - #seaborn and hypothesis	
